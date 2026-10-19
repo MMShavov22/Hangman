@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hangman · History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="layout single">
+    <div class="main-col">
+        <h1 class="logo">Hang<span>man</span></h1>
+        <nav class="nav">
+            <a href="/">Play</a>
+            <a href="/history.html" class="active">History</a>
+            <a href="/reports.html">Reports</a>
+        </nav>
+
+        <section class="card">
+            <h2>Play history</h2>
+
+            <form id="filterForm" class="filters">
+                <div class="field">
+                    <label class="field-label" for="from">From</label>
+                    <input id="from" type="date">
+                </div>
+                <div class="field">
+                    <label class="field-label" for="to">To</label>
+                    <input id="to" type="date">
+                </div>
+                <div class="field">
+                    <label class="field-label" for="order">Order</label>
+                    <select id="order">
+                        <option value="asc">Oldest first</option>
+                        <option value="desc">Newest first</option>
+                    </select>
+                </div>
+                <button type="submit" class="primary">Show</button>
+                <button type="button" id="todayBtn" class="ghost">Today</button>
+                <button type="button" id="allBtn" class="ghost">All time</button>
+            </form>
+
+            <p id="error" class="error"></p>
+            <p id="count" class="count"></p>
+
+            <div class="table-wrap">
+                <table id="historyTable" class="hidden">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Player</th>
+                        <th>Category</th>
+                        <th>Difficulty</th>
+                        <th>Result</th>
+                        <th>Points</th>
+                    </tr>
+                    </thead>
+                    <tbody id="historyBody"></tbody>
+                </table>
+            </div>
+            <p id="empty" class="empty-state hidden">No games found for this period.</p>
+        </section>
+    </div>
+</main>
+<script src="history.js"></script>
+</body>
+</html>

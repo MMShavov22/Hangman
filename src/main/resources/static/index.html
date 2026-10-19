@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="layout">
+    <div class="main-col">
+        <h1 class="logo">Hang<span>man</span></h1>
+        <nav class="nav">
+            <a href="/" class="active">Play</a>
+            <a href="/history.html">History</a>
+            <a href="/reports.html">Reports</a>
+        </nav>
+
+        <section id="setup" class="card">
+            <h2>New game</h2>
+            <form id="setupForm">
+                <label class="field-label" for="username">Your name</label>
+                <input id="username" type="text" maxlength="20" required autocomplete="off" placeholder="e.g. martin">
+
+                <label class="field-label" for="category">Category</label>
+                <select id="category"></select>
+
+                <span class="field-label">Difficulty</span>
+                <div class="difficulty">
+                    <input type="radio" id="d-easy" name="difficulty" value="EASY">
+                    <label for="d-easy">Easy<small>8 mistakes · ×1</small></label>
+                    <input type="radio" id="d-medium" name="difficulty" value="MEDIUM" checked>
+                    <label for="d-medium">Medium<small>6 mistakes · ×2</small></label>
+                    <input type="radio" id="d-hard" name="difficulty" value="HARD">
+                    <label for="d-hard">Hard<small>4 mistakes · ×3</small></label>
+                </div>
+
+                <p id="setupError" class="error hidden"></p>
+                <button type="submit" class="primary wide">Start game</button>
+            </form>
+        </section>
+
+        <section id="game" class="card hidden">
+            <div class="topbar">
+                <span class="chip" id="chipCategory"></span>
+                <span class="chip alt" id="chipDifficulty"></span>
+            </div>
+
+            <div class="stage">
+                <svg id="gallows" viewBox="0 0 240 260" aria-label="Hangman drawing">
+                    <path class="part" pathLength="1" d="M20 245H170"/>
+                    <path class="part" pathLength="1" d="M60 245V25"/>
+                    <path class="part" pathLength="1" d="M60 25H155"/>
+                    <path class="part" pathLength="1" d="M155 25V58"/>
+                    <circle class="part" pathLength="1" cx="155" cy="80" r="22"/>
+                    <path class="part" pathLength="1" d="M155 102V165"/>
+                    <path class="part" pathLength="1" d="M155 118L125 145"/>
+                    <path class="part" pathLength="1" d="M155 118L185 145"/>
+                    <path class="part" pathLength="1" d="M155 165L130 208"/>
+                    <path class="part" pathLength="1" d="M155 165L180 208"/>
+                </svg>
+                <div class="status">
+                    <div id="lives" class="lives"></div>
+                    <p id="mistakesText" class="muted"></p>
+                </div>
+            </div>
+
+            <div id="word" class="word" aria-live="polite"></div>
+            <div id="result" class="result hidden"></div>
+            <p id="message" class="error"></p>
+            <div id="keyboard" class="keyboard"></div>
+
+            <div class="actions">
+                <button id="newWordBtn" class="primary" type="button">New word</button>
+                <button id="menuBtn" class="ghost" type="button">Menu</button>
+            </div>
+        </section>
+    </div>
+
+    <aside class="card leaderboard">
+        <h2>🏆 Leaderboard</h2>
+        <ol id="leaderboardList"></ol>
+    </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

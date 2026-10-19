@@ -1,0 +1,26 @@
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{"username": "martin", "score": 50}
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{"username": "Anna", "score": 80}
+
+###
+
+GET http://localhost:8080/api/users/sorted
+
+###
+GET http://localhost:8080/api/history
+
+###
+
+GET http://localhost:8080/api/history?from=2026-09-28&to=2026-09-28
+
+###
+
+GET http://localhost:8080/api/history?from=2026-09-01&to=2026-09-30&order=desc

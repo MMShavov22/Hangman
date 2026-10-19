@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hangman · Reports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="layout single">
+    <div class="main-col">
+        <h1 class="logo">Hang<span>man</span></h1>
+        <nav class="nav">
+            <a href="/">Play</a>
+            <a href="/history.html">History</a>
+            <a href="/reports.html" class="active">Reports</a>
+        </nav>
+
+        <section class="card">
+            <h2>Analytics & Reports</h2>
+
+            <form id="reportForm" class="filters">
+                <div class="field">
+                    <label class="field-label" for="periodSelect">Time Period</label>
+                    <select id="periodSelect">
+                        <option value="1">Last 1 Month</option>
+                        <option value="6">Last 6 Months</option>
+                        <option value="12">Last 12 Months</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="anchorDate">End Date (Calendar)</label>
+                    <input id="anchorDate" type="date">
+                </div>
+                <button type="submit" class="primary">Generate Report</button>
+            </form>
+
+            <p id="error" class="error"></p>
+
+            <div id="reportOutput" class="report-container hidden">
+                <div class="report-header">
+                    <h3 id="reportTitle">Report Summary</h3>
+                    <span id="dateRangeChip" class="chip alt"></span>
+                </div>
+
+                <!-- ADD THE DOWNLOAD PDF BUTTON HERE -->
+                <div style="display: flex; justify-content: flex-end;">
+                    <button id="downloadPdfBtn" type="button" class="primary">
+                        📄 Download PDF Report
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Total Events</span>
+                        <span id="totalEvents" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Won Games</span>
+                        <span id="wonEvents" class="stat-value good">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Lost Games</span>
+                        <span id="lostEvents" class="stat-value bad">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Total Earnings / Points</span>
+                        <span id="totalPoints" class="stat-value highlight">0 pts</span>
+                    </div>
+                </div>
+
+                <div class="category-breakdown">
+                    <h4>Event Breakdown by Category</h4>
+                    <ul id="categoryList" class="category-list"></ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<script src="reports.js"></script>
+</body>
+</html>
