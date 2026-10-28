@@ -43,7 +43,6 @@
                     <span id="dateRangeChip" class="chip alt"></span>
                 </div>
 
-                <!-- ADD THE DOWNLOAD PDF BUTTON HERE -->
                 <div style="display: flex; justify-content: flex-end;">
                     <button id="downloadPdfBtn" type="button" class="primary">
                         📄 Download PDF Report
@@ -72,6 +71,46 @@
                 <div class="category-breakdown">
                     <h4>Event Breakdown by Category</h4>
                     <ul id="categoryList" class="category-list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card user-analytics-card">
+            <div class="section-header-row">
+                <h2>New User Registration Analytics</h2>
+                <span class="chip accent">Smart Insights</span>
+            </div>
+
+            <div id="userAnalyticsStatus" class="empty-state small">Loading user statistics...</div>
+
+            <div id="userAnalyticsBox" class="user-analytics-box hidden">
+                <div class="stats-grid user-grid">
+                    <div class="stat-card performance-card">
+                        <span class="stat-label">Today</span>
+                        <span id="usersToday" class="stat-value highlight">0</span>
+                    </div>
+                    <div class="stat-card performance-card">
+                        <span class="stat-label">7 Days</span>
+                        <span id="usersWeek" class="stat-value highlight">0</span>
+                    </div>
+                    <div class="stat-card performance-card">
+                        <span class="stat-label">30 Days</span>
+                        <span id="usersMonth" class="stat-value highlight">0</span>
+                    </div>
+                    <div class="stat-card performance-card">
+                        <span class="stat-label">12 Months</span>
+                        <span id="usersYear" class="stat-value highlight">0</span>
+                    </div>
+                </div>
+
+                <div class="insight-panel">
+                    <h4>AI-generated summary</h4>
+                    <p id="userInsight"></p>
+                </div>
+
+                <div class="trend-panel">
+                    <h4>Registration trend (30 days)</h4>
+                    <ul id="userTrendList" class="trend-list"></ul>
                 </div>
             </div>
         </section>

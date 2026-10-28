@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -32,6 +34,9 @@ public class User {
 
     private int score;
 
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     public User() {}
 
     public User(String username, String name, String email, String phone, Role role) {
@@ -41,6 +46,14 @@ public class User {
         this.phone = phone;
         this.role = role;
         this.active = true;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
+        }
     }
 
     // Getters and Setters
@@ -59,4 +72,6 @@ public class User {
     public void setActive(boolean active) { this.active = active; }
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

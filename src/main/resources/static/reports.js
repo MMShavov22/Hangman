@@ -33,6 +33,22 @@ async function fetchReport() {
     }
 }
 
+async function fetchUserAnalytics() {
+    try {
+        const res = await fetch("/api/users/analytics");
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok) {
+            throw new Error(data.error || "Failed to load user analytics.");
+        }
+
+        renderUserAnalytics(data);
+    } catch (err) {
+        $("userAnalyticsStatus").textContent = err.message;
+        $("userAnalyticsStatus").classList.remove("hidden");
+    }
+}
+
 function renderReport(data) {
     $("reportOutput").classList.remove("hidden");
     $("reportTitle").textContent = `${data.periodMonths}-Month Aggregated Report`;
@@ -73,6 +89,55 @@ function renderReport(data) {
     });
 }
 
+function renderUserAnalytics(data) {
+    $("userAnalyticsStatus").classList.add("hidden");
+    $("userAnalyticsBox").classList.remove("hidden");
+
+    $("usersToday").textContent = data.today ?? 0;
+    $("usersWeek").textContent = data.lastWeek ?? 0;
+    $("usersMonth").textContent = data.lastMonth ?? 0;
+    $("usersYear").textContent = data.lastYear ?? 0;
+    $("userInsight").textContent = data.insight || "No registration pattern available.";
+
+    const trendList = $("userTrendList");
+    trendList.innerHTML = "";
+
+    const trend = Array.isArray(data.trend) ? data.trend : [];
+    if (trend.length === 0) {
+        const li = document.createElement("li");
+        li.className = "empty-state small";
+        li.textContent = "No trend data available.";
+        trendList.appendChild(li);
+        return;
+    }
+
+    const maxValue = Math.max(...trend.map(item => Number(item.count) || 0), 1);
+    trend.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "trend-item";
+
+        const label = document.createElement("span");
+        label.className = "trend-label";
+        label.textContent = item.label;
+
+        const barWrap = document.createElement("div");
+        barWrap.className = "trend-bar-wrap";
+
+        const bar = document.createElement("span");
+        bar.className = "trend-bar";
+        const percentage = ((Number(item.count) || 0) / maxValue) * 100;
+        bar.style.width = `${Math.max(percentage, 8)}%`;
+
+        const count = document.createElement("span");
+        count.className = "trend-count";
+        count.textContent = item.count;
+
+        barWrap.appendChild(bar);
+        li.append(label, barWrap, count);
+        trendList.appendChild(li);
+    });
+}
+
 $("reportForm").addEventListener("submit", (e) => {
     e.preventDefault();
     fetchReport();
@@ -89,6 +154,6 @@ $("downloadPdfBtn").addEventListener("click", () => {
     window.location.href = "/api/reports/download-pdf?" + params.toString();
 });
 
-// Default calendar value to today
 $("anchorDate").value = getTodayString();
 fetchReport();
+fetchUserAnalytics();

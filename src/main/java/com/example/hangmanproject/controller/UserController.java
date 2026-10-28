@@ -3,6 +3,7 @@ package com.example.hangmanproject.controller;
 import com.example.hangmanproject.dto.CreateUserRequest;
 import com.example.hangmanproject.dto.UpdateProfileRequest;
 import com.example.hangmanproject.dto.UpdateRoleRequest;
+import com.example.hangmanproject.dto.UserRegistrationSummary;
 import com.example.hangmanproject.model.User;
 import com.example.hangmanproject.service.UserService;
 import jakarta.validation.Valid;
@@ -28,6 +29,11 @@ public class UserController {
     @GetMapping
     public List<User> getActiveUsers() {
         return userService.getAllActiveUsers();
+    }
+
+    @GetMapping("/analytics")
+    public UserRegistrationSummary getRegistrationSummary() {
+        return userService.getRegistrationSummary();
     }
 
     @GetMapping("/{id}")

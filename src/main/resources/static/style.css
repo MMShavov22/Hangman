@@ -8,6 +8,7 @@
     --accent2: #22d3ee;
     --good: #34d399;
     --bad: #fb7185;
+    --warning: #fbbf24;
 }
 
 * { box-sizing: border-box; }
@@ -48,7 +49,6 @@ body {
 }
 .card h2 { margin-top: 0; }
 
-/* Form */
 .field-label { display: block; margin: 16px 0 6px; color: var(--muted); font-size: 0.9rem; }
 
 input[type="text"], select {
@@ -78,7 +78,6 @@ select option { color: #000; }
 .difficulty label small { display: block; margin-top: 4px; color: var(--muted); font-weight: 400; font-size: 0.75rem; }
 .difficulty input:checked + label { border-color: var(--accent); background: rgba(124, 92, 255, 0.25); }
 
-/* Buttons */
 button { font: inherit; }
 .primary {
     padding: 12px 22px;
@@ -106,7 +105,6 @@ button { font: inherit; }
 .error { color: var(--bad); min-height: 1.2em; margin: 8px 0; text-align: center; }
 .muted { color: var(--muted); margin: 6px 0 0; }
 
-/* Game */
 .topbar { display: flex; gap: 8px; margin-bottom: 8px; }
 .chip {
     padding: 4px 12px;
@@ -116,6 +114,7 @@ button { font: inherit; }
     font-weight: 600;
 }
 .chip.alt { background: rgba(34, 211, 238, 0.2); }
+.chip.accent { background: rgba(251, 191, 36, 0.18); color: #fef3c7; }
 
 .stage { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
 #gallows { width: 220px; max-width: 100%; }
@@ -178,7 +177,6 @@ button { font: inherit; }
 .key.correct { background: var(--good); color: #04241a; }
 .key.wrong { background: var(--bad); color: #2a0710; }
 
-/* Leaderboard */
 .leaderboard ol { list-style: none; margin: 0; padding: 0; }
 .leaderboard li {
     display: flex;
@@ -200,7 +198,6 @@ button { font: inherit; }
 .leaderboard .score { color: var(--accent2); font-weight: 700; }
 .leaderboard .empty { color: var(--muted); display: block; }
 
-/* Navigation */
 .nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
 .nav a {
     color: var(--muted);
@@ -214,7 +211,6 @@ button { font: inherit; }
 .nav a:hover { color: var(--ink); }
 .nav a.active { color: var(--ink); background: rgba(124, 92, 255, 0.25); border-color: var(--accent); }
 
-/* History page */
 .layout.single { grid-template-columns: minmax(0, 1fr); }
 
 input[type="date"] {
@@ -245,8 +241,8 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.04); }
 .badge.lose { background: rgba(251, 113, 133, 0.15); color: var(--bad); }
 
 .empty-state { text-align: center; color: var(--muted); padding: 32px 0 8px; }
+.empty-state.small { padding: 16px 0 8px; font-size: 0.92rem; }
 
-/* Reports module styling */
 .report-container {
     margin-top: 24px;
     display: flex;
@@ -333,6 +329,93 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.04); }
     font-weight: 700;
 }
 
+.user-analytics-card {
+    margin-top: 24px;
+}
+
+.section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.user-analytics-box {
+    margin-top: 18px;
+}
+
+.user-grid {
+    margin-bottom: 18px;
+}
+
+.performance-card {
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    background: rgba(34, 211, 238, 0.08);
+}
+
+.insight-panel,
+.trend-panel {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.insight-panel h4,
+.trend-panel h4 {
+    margin: 0 0 8px 0;
+    color: var(--muted);
+}
+
+.insight-panel p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.trend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.trend-item {
+    display: grid;
+    grid-template-columns: 54px minmax(80px, 1fr) 24px;
+    align-items: center;
+    gap: 10px;
+}
+
+.trend-label {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.trend-bar-wrap {
+    width: 100%;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.trend-bar {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: inherit;
+}
+
+.trend-count {
+    color: var(--ink);
+    font-weight: 700;
+    text-align: right;
+}
+
 @media (max-width: 800px) {
     .layout { grid-template-columns: 1fr; padding: 16px; }
+    .section-header-row { flex-direction: column; align-items: flex-start; }
 }
